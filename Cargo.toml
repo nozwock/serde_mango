@@ -1,9 +1,9 @@
 [package]
-name = "serde_ini"
+name = "serde_mango"
 version = "0.2.0"
 authors = ["arcnmx"]
 
-description = "Windows INI file {de,}serialization"
+description = "MangoHud's config {de,}serialization"
 keywords = ["ini", "cfg", "serde"]
 
 documentation = "http://arcnmx.github.io/serde-ini/serde_ini"

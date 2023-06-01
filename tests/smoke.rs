@@ -1,10 +1,10 @@
 #[macro_use]
 extern crate serde_derive;
 extern crate serde;
-extern crate serde_ini;
+extern crate serde_mango;
 
 use serde::Deserialize;
-use serde_ini::{Deserializer, Parser};
+use serde_mango::{Deserializer, Parser};
 
 #[derive(Deserialize, Serialize, Clone, PartialEq, Default, Debug)]
 struct TestModel {
@@ -43,40 +43,75 @@ fn expected() -> TestModel {
         map1: Some(Box::new(TestModel {
             key1: "value2".into(),
             key2: 256,
-            .. Default::default()
+            ..Default::default()
         })),
         map2: Some(Box::new(TestModel {
             key1: "value3".into(),
             key2: 257,
-            .. Default::default()
+            ..Default::default()
         })),
     }
 }
 
 #[test]
 fn smoke_de() {
-
     // Parser
-    assert_eq!(expected(), TestModel::deserialize(&mut Deserializer::new(Parser::from_bufread(TEST_INPUT.as_bytes()))).unwrap());
-    assert_eq!(expected(), TestModel::deserialize(&mut Deserializer::new(Parser::from_read(TEST_INPUT.as_bytes()))).unwrap());
-    assert_eq!(expected(), TestModel::deserialize(&mut Deserializer::new(Parser::from_str(TEST_INPUT))).unwrap());
+    assert_eq!(
+        expected(),
+        TestModel::deserialize(&mut Deserializer::new(Parser::from_bufread(
+            TEST_INPUT.as_bytes()
+        )))
+        .unwrap()
+    );
+    assert_eq!(
+        expected(),
+        TestModel::deserialize(&mut Deserializer::new(Parser::from_read(
+            TEST_INPUT.as_bytes()
+        )))
+        .unwrap()
+    );
+    assert_eq!(
+        expected(),
+        TestModel::deserialize(&mut Deserializer::new(Parser::from_str(TEST_INPUT))).unwrap()
+    );
 
     // Deserializer
-    assert_eq!(expected(), TestModel::deserialize(&mut Deserializer::from_bufread(TEST_INPUT.as_bytes())).unwrap());
-    assert_eq!(expected(), TestModel::deserialize(&mut Deserializer::from_read(TEST_INPUT.as_bytes())).unwrap());
-    assert_eq!(expected(), TestModel::deserialize(&mut Deserializer::from_str(TEST_INPUT)).unwrap());
+    assert_eq!(
+        expected(),
+        TestModel::deserialize(&mut Deserializer::from_bufread(TEST_INPUT.as_bytes())).unwrap()
+    );
+    assert_eq!(
+        expected(),
+        TestModel::deserialize(&mut Deserializer::from_read(TEST_INPUT.as_bytes())).unwrap()
+    );
+    assert_eq!(
+        expected(),
+        TestModel::deserialize(&mut Deserializer::from_str(TEST_INPUT)).unwrap()
+    );
 
     // Static methods
-    assert_eq!(expected(), serde_ini::from_bufread::<_, TestModel>(TEST_INPUT.as_bytes()).unwrap());
-    assert_eq!(expected(), serde_ini::from_read::<_, TestModel>(TEST_INPUT.as_bytes()).unwrap());
-    assert_eq!(expected(), serde_ini::from_str::<TestModel>(TEST_INPUT).unwrap());
+    assert_eq!(
+        expected(),
+        serde_mango::from_bufread::<_, TestModel>(TEST_INPUT.as_bytes()).unwrap()
+    );
+    assert_eq!(
+        expected(),
+        serde_mango::from_read::<_, TestModel>(TEST_INPUT.as_bytes()).unwrap()
+    );
+    assert_eq!(
+        expected(),
+        serde_mango::from_str::<TestModel>(TEST_INPUT).unwrap()
+    );
 }
 
 #[test]
 fn smoke_en() {
     let model = expected();
 
-    let data = serde_ini::to_vec(&model).unwrap();
+    let data = serde_mango::to_vec(&model).unwrap();
 
-    assert_eq!(model, serde_ini::from_read::<_, TestModel>(&data[..]).unwrap());
+    assert_eq!(
+        model,
+        serde_mango::from_read::<_, TestModel>(&data[..]).unwrap()
+    );
 }

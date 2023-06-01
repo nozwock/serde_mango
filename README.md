@@ -1,6 +1,6 @@
-# serde-ini
+# serde_mango
 
-[![release-badge][]][cargo] [![docs-badge][]][docs] [![license-badge][]][license]
+<!-- [![release-badge][]][cargo] [![docs-badge][]][docs] [![license-badge][]][license]
 
 `serde_ini` provides a serde `Serializer` and `Deserializer` for the [INI format](https://en.wikipedia.org/wiki/INI_file).
 The format is rather limited, only allowing top level keys to be maps or structs
@@ -17,4 +17,4 @@ See the [documentation][docs] for up to date API documentation.
 [docs-badge]: https://img.shields.io/badge/API-docs-blue.svg?style=flat-square
 [docs]: https://docs.rs/serde_ini/
 [license-badge]: https://img.shields.io/badge/license-MIT-ff69b4.svg?style=flat-square
-[license]: https://github.com/arcnmx/serde-ini/blob/master/COPYING
+[license]: https://github.com/arcnmx/serde-ini/blob/master/COPYING -->
