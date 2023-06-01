@@ -14,9 +14,12 @@ license = "MIT"
 
 [dependencies]
 serde = "1.0"
-indexmap = { version = "1.9", optional = true }
+indexmap = { version = "1.9" }
 result = "^1.0.0"
 void = "1.0"
 
 [dev-dependencies]
 serde_derive = "^1.0.0"
+
+# [features]
+# preserve_order = ["indexmap"]
