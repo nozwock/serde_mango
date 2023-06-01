@@ -2,6 +2,7 @@
 name = "serde_mango"
 version = "0.2.0"
 authors = ["arcnmx"]
+edition = "2021"
 
 description = "MangoHud's config {de,}serialization"
 keywords = ["ini", "cfg", "serde"]
@@ -12,9 +13,10 @@ readme = "README.md"
 license = "MIT"
 
 [dependencies]
-serde = "^1.0.0"
+serde = "1.0"
+indexmap = { version = "1.9", optional = true }
 result = "^1.0.0"
-void = "^1.0.2"
+void = "1.0"
 
 [dev-dependencies]
 serde_derive = "^1.0.0"

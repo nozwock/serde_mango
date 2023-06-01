@@ -3,11 +3,6 @@
 
 //! Windows INI format serialization for serde
 
-extern crate result;
-extern crate void;
-#[macro_use]
-extern crate serde;
-
 pub mod de;
 pub mod error;
 pub mod parse;
