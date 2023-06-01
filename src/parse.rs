@@ -1,4 +1,3 @@
-use result::prelude::*;
 use std::{error, fmt, io, str};
 use void::Void;
 
@@ -142,10 +141,11 @@ impl<E, S: AsRef<str>, T: Iterator<Item = Result<S, E>>> Iterator for Parser<T> 
 
     fn next(&mut self) -> Option<Self::Item> {
         self.input
-            .next_invert()
+            .next()
+            .transpose()
             .map_err(Error::Inner)
             .and_then(|l| Self::parse_next(l))
-            .invert()
+            .transpose()
     }
 }
 
