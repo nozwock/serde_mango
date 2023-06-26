@@ -1,5 +1,4 @@
-use std::{error, fmt, io, str};
-use void::Void;
+use std::{convert::Infallible, error, fmt, io, str};
 
 #[derive(Clone, Eq, PartialEq, Ord, PartialOrd, Debug)]
 pub enum Item {
@@ -152,7 +151,7 @@ impl<E, S: AsRef<str>, T: Iterator<Item = Result<S, E>>> Iterator for Parser<T> 
 pub struct OkIter<I>(pub I);
 
 impl<T, I: Iterator<Item = T>> Iterator for OkIter<I> {
-    type Item = Result<T, Void>;
+    type Item = Result<T, Infallible>;
 
     fn next(&mut self) -> Option<Self::Item> {
         (self.0).next().map(Ok)
