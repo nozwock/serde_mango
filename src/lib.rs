@@ -5,11 +5,14 @@
 
 pub mod de;
 pub mod error;
-pub mod parse;
 pub mod ser;
-pub mod write;
 
 pub use de::{from_bufread, from_read, from_str, Deserializer};
-pub use parse::{Item, Parser};
+pub use error::{Error, Result};
 pub use ser::{to_string, to_vec, to_writer, Serializer};
+
+pub mod parse;
+pub mod write;
+
+pub use parse::{Item, Parser};
 pub use write::{LineEnding, Writer};
